@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grocery.App.Views.NewProductView"
+             Title="Nieuw product">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nieuw" Order="Primary" Command="{Binding GoToNewProductCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Nieuw product" FontSize="Large"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <Border Stroke="#C49B33" StrokeThickness="4" Padding="16" Margin="12">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,2*"
+              ColumnSpacing="12" RowSpacing="10">
+
+            <!-- Naam -->
+            <Label Grid.Row="0" Grid.Column="0" Text="Naam" VerticalTextAlignment="Center"/>
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Placeholder="Bijv. Appel"/>
+
+            <!-- Voorraad -->
+            <Label Grid.Row="1" Grid.Column="0" Text="Voorraad" VerticalTextAlignment="Center"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Stock}" Keyboard="Numeric" Placeholder="0"/>
+
+            <!-- THT (ShelfLife) -->
+            <Label Grid.Row="2" Grid.Column="0" Text="THT datum" VerticalTextAlignment="Center"/>
+            <DatePicker Grid.Row="2" Grid.Column="1"
+                        Date="{Binding ShelfLifeDate, Mode=TwoWay}"/>
+
+            <!-- Prijs -->
+            <Label Grid.Row="3" Grid.Column="0" Text="Prijs (€)" VerticalTextAlignment="Center"/>
+            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding PriceText}" Keyboard="Numeric" Placeholder="0,00"/>
+
+            <!-- Validatie fouten -->
+            <Label Grid.Row="4" Grid.ColumnSpan="2"
+                   Text="{Binding ValidationSummary}"
+                   TextColor="Crimson" />
+
+            <!-- Acties -->
+            <Grid Grid.Row="5" Grid.ColumnSpan="2" ColumnDefinitions="*,*"
+                  Margin="0,8,0,0">
+                <Button Grid.Column="0" Text="Annuleren"
+                        Command="{Binding CancelCommand}" />
+                <Button Grid.Column="1" Text="Opslaan"
+                        Command="{Binding SaveCommand}" />
+            </Grid>
+        </Grid>
+    </Border>
+</ContentPage>
