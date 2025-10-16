@@ -20,7 +20,17 @@ namespace Grocery.Core.Services
 
         public Product Add(Product item)
         {
-            throw new NotImplementedException();
+            item.Id = 0; // Ensure the ID is set to 0 for auto-increment
+            item = _productRepository.Add(item);
+
+            if (item.Id != 0)
+            {
+                return item;
+            }
+            else 
+            {
+                throw new Exception("Failed to add product.");
+            }
         }
 
         public Product? Delete(Product item)

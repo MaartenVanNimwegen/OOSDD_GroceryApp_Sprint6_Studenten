@@ -9,4 +9,10 @@ public partial class ProductView : ContentPage
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ProductViewModel)?.LoadCommand.Execute(null);
+    }
 }
